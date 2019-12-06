@@ -42,3 +42,9 @@ Would output:
 | 123 Main St    | POINT( -122.1235  47.1234) |
 | 124 Main St    | POINT( -122.1235  47.1235) |
 | 125 Main St    | POINT( -122.1235  47.1236) |
+
+
+Can also be used in a bash pipeline:
+```shell script
+cat csv.csv | sed -e "s/\t/,/g" | geocsv --lat 1 --lng 2 | psql -c "COPY table FROM STDIN CSV"
+```
