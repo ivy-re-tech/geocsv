@@ -12,12 +12,12 @@ import (
 )
 
 var (
-	in    = kingpin.Arg("input", "The input file to use, if not specified, stdin is used").File()
-	out   = kingpin.Arg("out", "The output file to use, if not specified, stdout is used").File()
-	h = kingpin.Flag("header", "Whether or not to skip the first row or not").Bool()
-	latIdx   = kingpin.Flag("lat", "The column index of the latitude column").Required().Int()
-	lngIdx   = kingpin.Flag("lng", "The column index of the longitude column").Required().Int()
-	delim = kingpin.Flag("d", "The delimiter to use for CSV files").Default(",").String()
+	in     = kingpin.Arg("input", "The input file to use, if not specified, stdin is used").File()
+	out    = kingpin.Arg("out", "The output file to use, if not specified, stdout is used").File()
+	h      = kingpin.Flag("header", "Whether or not to skip the first row or not").Bool()
+	latIdx = kingpin.Flag("lat", "The column index of the latitude column").Required().Int()
+	lngIdx = kingpin.Flag("lng", "The column index of the longitude column").Required().Int()
+	delim  = kingpin.Flag("d", "The delimiter to use for CSV files").Default(",").String()
 )
 
 func main() {
@@ -57,7 +57,7 @@ func main() {
 		}
 		lat, lng := parseFloat(rec[*latIdx], row), parseFloat(rec[*lngIdx], row)
 		p := orb.Point{lng, lat}
-		dst := make([]string, len(rec) - 1)
+		dst := make([]string, len(rec)-1)
 		var i int
 		for j, s := range rec {
 			if j != *latIdx && j != *lngIdx {
@@ -65,7 +65,7 @@ func main() {
 				i++
 			}
 		}
-		dst[len(dst) - 1] = wkt.MarshalString(p)
+		dst[len(dst)-1] = wkt.MarshalString(p)
 		err = writer.Write(dst)
 		if err == io.ErrClosedPipe {
 			break
@@ -83,27 +83,6 @@ func main() {
 func logParseFloatErr(val string, row int, err error) {
 	log.Fatalf("failed to convert value %s to a float, row %d: %v\n", val, row, err)
 }
-
-func min(is ...int) int {
-	m := is[0]
-	for _, i := range is {
-		if i < m {
-			m = i
-		}
-	}
-	return m
-}
-
-func max(is ...int) int {
-	m := is[0]
-	for _, i := range is {
-		if i > m {
-			m = i
-		}
-	}
-	return m
-}
-
 
 func parseFloat(val string, row int) float64 {
 	if len(val) == 0 {
