@@ -23,7 +23,7 @@ brews:
   - name: geocsv
     github:
       owner: ivy-re-tech
-      name: geocsv
+      name: homebrew-geocsv
     commit_author:
       name: goreleaserbot
       email: goreleaser@carlosbecker.comv
