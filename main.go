@@ -41,7 +41,7 @@ func run() error {
 	}
 	go closeOnEnd(input)
 	var output io.WriteCloser
-	if out != nil && len(*out) > 0{
+	if out != nil && len(*out) > 0 {
 		f, err := os.OpenFile(*out, os.O_CREATE, os.ModeAppend)
 		if err != nil {
 			return err
@@ -62,7 +62,7 @@ func run() error {
 			return fmt.Errorf("failed to read CSV: %s", err)
 		}
 		headers := removeElements(header, *latIdx, *lngIdx)
-		headers[len(headers) -1] = *name
+		headers[len(headers)-1] = *name
 		err = writer.Write(headers)
 		if err == io.ErrClosedPipe {
 			return nil
@@ -120,7 +120,7 @@ func parseFloat(val string, row int) float64 {
 }
 
 func removeElements(str []string, one, two int) []string {
-	f := make([]string, len(str) -1)
+	f := make([]string, len(str)-1)
 	var i int
 	for j := 0; j < len(str); j++ {
 		if j != one && j != two {
