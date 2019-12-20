@@ -133,7 +133,7 @@ func removeElements(str []string, one, two int) []string {
 
 func closeOnEnd(r io.ReadCloser) {
 	sig := make(chan os.Signal, 1)
-	signal.Notify(sig, syscall.SIGKILL, syscall.SIGINT)
+	signal.Notify(sig, syscall.SIGTERM, syscall.SIGINT)
 	<-sig
 	err := r.Close()
 	if err != nil {
