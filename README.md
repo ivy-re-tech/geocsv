@@ -52,7 +52,7 @@ Contrived Example:
 cat csv.csv | sed -e "s/\t/,/g" | geocsv --lat 1 --lng 2 | psql -c "COPY table FROM STDIN CSV"
 ```
 
-## Example
+## Examples
 
 CSV with header, keep header in output:
 ```shell script
