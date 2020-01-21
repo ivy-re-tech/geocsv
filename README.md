@@ -32,7 +32,7 @@ Imagine a CSV that looks this:
 
 Running
 ```shell script
-geocsv --lat 1 --lng 2 csv.csv | psql -c "COPY table FROM STDIN CSV"
+geocsv --lat 1 --lng 2 csv.csv
 ```
 
 Would output:
