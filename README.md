@@ -1,8 +1,9 @@
 # GeoCSV
 GeoCSV is an easier way to insert latitude longitude pairs into PostGIS from a CSV
 
-A lot of times, data comes in a CSV that contains a column for latitude, and a column for longitude
-this isn't ideal for copying data straight into a PostGIS table, since you'll have to define a lat/lng column,
+## Background
+
+A lot of times, data comes in a CSV that contains a column for latitude, and a column for longitude. This isn't ideal for copying data straight into a PostGIS table, since you'll have to define a lat/lng column,
 then run a command like:
 
 ```sql
